@@ -1,11 +1,10 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { ArrowUp, Bot } from 'lucide-react';
+import { ArrowUp, Bot, UserRound } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -99,7 +98,9 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
                   </div>
                   {message.role === 'user' && (
                     <Avatar className="h-8 w-8 bg-muted">
-                      <span className="text-xs font-medium">You</span>
+                      <AvatarFallback>
+                        <UserRound size={16} />
+                      </AvatarFallback>
                     </Avatar>
                   )}
                 </div>
