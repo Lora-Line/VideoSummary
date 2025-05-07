@@ -3,9 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Avatar } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Bot } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -83,7 +83,9 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
                 >
                   {message.role === 'assistant' && (
                     <Avatar className="h-8 w-8 bg-primary/20">
-                      <span className="text-xs font-medium">AI</span>
+                      <AvatarFallback className="text-primary">
+                        <Bot size={16} />
+                      </AvatarFallback>
                     </Avatar>
                   )}
                   <div 
@@ -105,7 +107,9 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
               {isLoading && (
                 <div className="flex gap-3">
                   <Avatar className="h-8 w-8 bg-primary/20">
-                    <span className="text-xs font-medium">AI</span>
+                    <AvatarFallback className="text-primary">
+                      <Bot size={16} />
+                    </AvatarFallback>
                   </Avatar>
                   <div className="rounded-lg px-4 py-2 bg-secondary text-secondary-foreground">
                     <div className="flex gap-1">
