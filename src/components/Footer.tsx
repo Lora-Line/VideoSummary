@@ -7,14 +7,14 @@ const Footer = () => {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            © 2025 VideoSummary. Tous droits réservés.
+            © 2025 VideoSummary. All rights reserved.
           </p>
           <div className="flex gap-4">
             <a href="#" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
-              Mentions légales
+              Legal Notice
             </a>
             <a href="#" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
-              Confidentialité
+              Privacy
             </a>
             <a href="#" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
               Contact

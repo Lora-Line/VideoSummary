@@ -26,27 +26,27 @@ const HeroSection = ({ onSubmit, url, setUrl, isLoading }: HeroSectionProps) => 
         <div className="absolute opacity-30 animate-blob animation-delay-2000 blur-xl bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full w-72 h-72 -bottom-10 -right-10"></div>
         
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter max-w-3xl mb-6">
-          Obtenez un résumé de n'importe quelle <span className="gradient-text">vidéo YouTube</span>
+          Get a summary of any <span className="gradient-text">YouTube video</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-[700px] mb-8">
-          Gagnez du temps en obtenant l'essentiel de chaque vidéo, puis discutez avec notre IA pour approfondir le contenu.
+          Save time by getting the essence of every video, then chat with our AI to explore the content in depth.
         </p>
         
         <form onSubmit={handleSubmit} className="w-full max-w-xl flex flex-col md:flex-row gap-2 mb-8">
           <Input
-            placeholder="Collez l'URL YouTube ici..."
+            placeholder="Paste YouTube URL here..."
             className="flex-1"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             disabled={isLoading}
           />
           <Button type="submit" size="lg" disabled={isLoading || !url.trim()}>
-            {isLoading ? 'Chargement...' : 'Résumer'}
+            {isLoading ? 'Loading...' : 'Summarize'}
           </Button>
         </form>
         
         <p className="text-sm text-muted-foreground">
-          Fonctionne avec n'importe quelle vidéo YouTube publique
+          Works with any public YouTube video
         </p>
       </div>
     </div>

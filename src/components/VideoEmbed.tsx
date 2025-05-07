@@ -17,7 +17,7 @@ const VideoEmbed = ({ videoUrl }: VideoEmbedProps) => {
   const videoId = getVideoId(videoUrl);
   
   if (!videoId) {
-    return <div>URL de vidéo invalide</div>;
+    return <div>Invalid video URL</div>;
   }
 
   return (

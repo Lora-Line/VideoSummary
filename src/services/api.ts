@@ -22,7 +22,7 @@ export const getVideoSummary = async (url: string) => {
   const { valid, videoId } = parseYouTubeUrl(url);
   
   if (!valid) {
-    throw new Error('URL YouTube invalide');
+    throw new Error('Invalid YouTube URL');
   }
   
   // Simulate API call delay
@@ -30,8 +30,8 @@ export const getVideoSummary = async (url: string) => {
   
   // Mock response
   return {
-    title: "Comment l'Intelligence Artificielle transforme notre monde",
-    summary: "Cette vidéo explore l'impact transformationnel de l'intelligence artificielle sur notre société moderne. Elle commence par un aperçu historique du développement de l'IA, depuis ses débuts théoriques jusqu'aux applications actuelles.\n\nLes principaux points abordés incluent :\n\n1. L'évolution des algorithmes d'apprentissage automatique et leur impact sur diverses industries.\n\n2. Les implications éthiques de l'IA, notamment en ce qui concerne la vie privée, la prise de décision automatisée et les biais algorithmiques.\n\n3. Comment l'IA révolutionne des secteurs comme la santé, les transports et l'éducation, avec des exemples concrets d'applications innovantes.\n\n4. Les défis et opportunités futurs, y compris la question de la superintelligence et comment les sociétés peuvent s'adapter à ces changements rapides.\n\nLa conclusion souligne l'importance d'une approche équilibrée du développement de l'IA, qui maximise ses avantages tout en atténuant ses risques potentiels."
+    title: "How Artificial Intelligence is Transforming Our World",
+    summary: "This video explores the transformational impact of artificial intelligence on our modern society. It begins with a historical overview of AI development, from its theoretical beginnings to current applications.\n\nThe main points covered include:\n\n1. The evolution of machine learning algorithms and their impact on various industries.\n\n2. The ethical implications of AI, particularly regarding privacy, automated decision-making, and algorithmic bias.\n\n3. How AI is revolutionizing sectors like healthcare, transportation, and education, with concrete examples of innovative applications.\n\n4. Future challenges and opportunities, including the superintelligence question and how societies can adapt to these rapid changes.\n\nThe conclusion emphasizes the importance of a balanced approach to AI development, maximizing its benefits while mitigating potential risks."
   };
 };
 
@@ -41,18 +41,18 @@ export const chatWithAI = async (message: string) => {
   await delay(1500);
   
   // Mock responses based on keywords in the message
-  if (message.toLowerCase().includes('éthique') || message.toLowerCase().includes('ethique')) {
-    return "Les questions éthiques sont en effet centrales dans le développement de l'IA. La vidéo aborde plusieurs aspects comme les biais algorithmiques qui peuvent perpétuer des inégalités existantes, les problèmes de vie privée liés à la collecte massive de données, et la question de la transparence des décisions prises par les systèmes d'IA. Un point important soulevé est la nécessité d'établir des cadres réglementaires adaptés pour garantir que le développement de l'IA reste bénéfique pour l'humanité.";
+  if (message.toLowerCase().includes('ethics') || message.toLowerCase().includes('ethical')) {
+    return "Ethical questions are indeed central to AI development. The video addresses several aspects such as algorithmic bias that can perpetuate existing inequalities, privacy issues related to massive data collection, and the question of transparency in decisions made by AI systems. An important point raised is the need to establish appropriate regulatory frameworks to ensure that AI development remains beneficial for humanity.";
   }
   
-  if (message.toLowerCase().includes('santé') || message.toLowerCase().includes('sante') || message.toLowerCase().includes('médical') || message.toLowerCase().includes('medical')) {
-    return "Dans le domaine de la santé, l'IA apporte des avancées significatives. La vidéo mentionne notamment les systèmes d'aide au diagnostic qui peuvent détecter certaines pathologies sur des images médicales avec une précision égale ou supérieure à celle des médecins. Elle évoque également les assistants virtuels pour le suivi des patients, la découverte de médicaments accélérée par l'IA, et les possibilités de médecine personnalisée. Un exemple cité est celui des algorithmes capables de prédire les risques de maladies cardiaques à partir de multiples paramètres.";
+  if (message.toLowerCase().includes('health') || message.toLowerCase().includes('healthcare') || message.toLowerCase().includes('medical')) {
+    return "In healthcare, AI is making significant advances. The video mentions diagnostic support systems that can detect certain pathologies in medical images with accuracy equal to or better than doctors. It also discusses virtual assistants for patient monitoring, AI-accelerated drug discovery, and possibilities for personalized medicine. One example cited is algorithms capable of predicting heart disease risks from multiple parameters.";
   }
   
-  if (message.toLowerCase().includes('futur') || message.toLowerCase().includes('avenir')) {
-    return "Concernant l'avenir de l'IA, la vidéo adopte une perspective nuancée. Elle évoque le concept de superintelligence et les défis qu'elle pourrait poser, mais sans tomber dans l'alarmisme. L'accent est mis sur l'importance de développer une IA alignée sur les valeurs humaines. Parmi les tendances futures identifiées : l'IA générative continuera de se développer et de s'améliorer, l'IA deviendra plus accessible et démocratisée, et nous verrons une intégration plus profonde de l'IA dans notre quotidien, avec des interfaces plus naturelles. La vidéo souligne également l'importance de la formation pour s'adapter à ces changements.";
+  if (message.toLowerCase().includes('future')) {
+    return "Regarding the future of AI, the video takes a nuanced perspective. It discusses the concept of superintelligence and the challenges it could pose, but without alarmism. The emphasis is on the importance of developing AI aligned with human values. Among identified future trends: generative AI will continue to develop and improve, AI will become more accessible and democratized, and we'll see deeper integration of AI into our daily lives, with more natural interfaces. The video also emphasizes the importance of education to adapt to these changes.";
   }
   
   // Default response
-  return "Merci pour votre question ! La vidéo couvre ce sujet en détaillant comment l'IA transforme notre société à travers différents secteurs. Elle aborde à la fois les avantages, comme l'automatisation des tâches répétitives et l'amélioration de la prise de décision, et les défis, notamment en termes d'éthique et d'adaptation sociale. Si vous avez des questions plus spécifiques sur certains aspects comme l'éthique, la santé ou les perspectives futures, n'hésitez pas à me les poser.";
+  return "Thanks for your question! The video covers this topic by detailing how AI is transforming our society across different sectors. It addresses both the benefits, such as automating repetitive tasks and improving decision-making, and challenges, particularly in terms of ethics and social adaptation. If you have more specific questions about certain aspects like ethics, healthcare, or future perspectives, please feel free to ask me.";
 };

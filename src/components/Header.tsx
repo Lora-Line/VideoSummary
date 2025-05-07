@@ -17,8 +17,8 @@ const Header = () => {
           <div className="w-full flex-1 md:w-auto md:flex-none">
           </div>
           <nav className="flex items-center gap-2">
-            <Button variant="ghost" className="text-sm">Comment ça marche</Button>
-            <Button variant="ghost" className="text-sm">À propos</Button>
+            <Button variant="ghost" className="text-sm">How it works</Button>
+            <Button variant="ghost" className="text-sm">About</Button>
           </nav>
         </div>
       </div>

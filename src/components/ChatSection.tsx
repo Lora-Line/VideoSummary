@@ -20,7 +20,7 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Bonjour ! Je suis là pour discuter de cette vidéo avec vous. Que souhaitez-vous savoir ?"
+      content: "Hello! I'm here to discuss this video with you. What would you like to know?"
     }
   ]);
   const [input, setInput] = useState('');
@@ -58,7 +58,7 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
       console.error('Error sending message:', error);
       setMessages(prev => [...prev, { 
         role: 'assistant', 
-        content: "Je suis désolé, j'ai rencontré un problème. Pourriez-vous reformuler votre question ?" 
+        content: "I'm sorry, I encountered a problem. Could you please rephrase your question?" 
       }]);
     } finally {
       setIsLoading(false);
@@ -69,8 +69,8 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
     <div className="container px-4 md:px-6 py-8">
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="text-2xl">Discutez de la vidéo</CardTitle>
-          <p className="text-muted-foreground">Posez des questions sur le contenu de la vidéo</p>
+          <CardTitle className="text-2xl">Discuss the Video</CardTitle>
+          <p className="text-muted-foreground">Ask questions about the video content</p>
         </CardHeader>
         <Separator />
         <CardContent className="p-0">
@@ -97,7 +97,7 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
                   </div>
                   {message.role === 'user' && (
                     <Avatar className="h-8 w-8 bg-muted">
-                      <span className="text-xs font-medium">Vous</span>
+                      <span className="text-xs font-medium">You</span>
                     </Avatar>
                   )}
                 </div>
@@ -123,7 +123,7 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
         <CardFooter className="p-4 border-t">
           <div className="flex w-full items-center gap-2">
             <Textarea 
-              placeholder="Posez une question sur la vidéo..."
+              placeholder="Ask a question about the video..."
               className="min-h-12 flex-1 resize-none"
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -142,7 +142,7 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
               disabled={!input.trim() || isLoading}
             >
               <ArrowUp className="h-5 w-5" />
-              <span className="sr-only">Envoyer</span>
+              <span className="sr-only">Send</span>
             </Button>
           </div>
         </CardFooter>

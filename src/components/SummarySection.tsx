@@ -24,7 +24,7 @@ const SummarySection = ({ videoUrl, summary, title }: SummarySectionProps) => {
               <Separator className="my-2" />
             </CardHeader>
             <CardContent className="prose max-w-none">
-              <h3 className="text-lg font-medium mb-2">Résumé</h3>
+              <h3 className="text-lg font-medium mb-2">Summary</h3>
               <div className="space-y-4 text-pretty">
                 {summary.split('\n\n').map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
