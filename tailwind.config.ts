@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -70,25 +71,46 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				blob: {
+					"0%": {
+						transform: "translate(0px, 0px) scale(1)",
+					},
+					"33%": {
+						transform: "translate(30px, -50px) scale(1.1)",
+					},
+					"66%": {
+						transform: "translate(-20px, 20px) scale(0.9)",
+					},
+					"100%": {
+						transform: "translate(0px, 0px) scale(1)",
+					},
+				},
+				shimmer: {
 					from: {
-						height: 'var(--radix-accordion-content-height)'
+						backgroundPosition: "0 0"
 					},
 					to: {
-						height: '0'
+						backgroundPosition: "-200% 0"
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				blob: "blob 7s infinite",
+				shimmer: "shimmer 2s linear infinite"
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'hero-pattern': 'linear-gradient(to right bottom, rgba(79, 70, 229, 0.2), rgba(147, 51, 234, 0.2))',
+				shimmer: "linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent)"
 			}
 		}
 	},
