@@ -18,7 +18,6 @@ const Header = () => {
           </div>
           <nav className="flex items-center gap-2">
             <Button variant="ghost" className="text-sm">How it works</Button>
-            <Button variant="ghost" className="text-sm">About</Button>
           </nav>
         </div>
       </div>
