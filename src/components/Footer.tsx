@@ -9,17 +9,6 @@ const Footer = () => {
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             © 2025 VideoSummary. All rights reserved.
           </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
-              Legal Notice
-            </a>
-            <a href="#" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
-              Privacy
-            </a>
-            <a href="#" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
-              Contact
-            </a>
-          </div>
         </div>
       </div>
     </footer>
