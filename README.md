@@ -1,73 +1,43 @@
-# Welcome to your Lovable project
+# 📺 YouTube Video Summarizer & Q&A Bot
 
-## Project info
+A web application that automatically summarizes YouTube videos and lets users interact with an AI chatbot to ask questions based on the video's content.
 
-**URL**: https://lovable.dev/projects/d1829962-8aa2-45fc-9383-822560396c2d
+## 🚀 Features
 
-## How can I edit this code?
+- 🔗 Paste a YouTube URL
+- 📝 Automatic video summarization
+- 🤖 AI chatbot for question-answering based on the video
+- ⚡ Modern, responsive UI (React + Tailwind CSS)
+- 🧠 Backend powered by FastAPI and AI models (LLM + transcription)
 
-There are several ways of editing your application.
+## 🖼️ Preview
 
-**Use Lovable**
+![screenshot]('public\Capture d'écran 2025-05-07 200714.png') <!-- Replace with a real image if you have one -->
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d1829962-8aa2-45fc-9383-822560396c2d) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Installation
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js >= 18
+- Python >= 3.9
+- `ffmpeg` installed (for audio processing)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 1. Clone the repository
 
-Follow these steps:
+git clone https://github.com/your-username/video-summary.git
+cd video-summary
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 2. Run the backend (FastAPI)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd backend
+python -m venv env
+.venv\Scripts\activate 
+pip install -r requirements.txt
+uvicorn src.backend.main:app --reload
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 3. Run the frontend (React)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d1829962-8aa2-45fc-9383-822560396c2d) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

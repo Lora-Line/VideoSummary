@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { toast } from "@/components/ui/use-toast";
 import Header from '@/components/Header';
@@ -9,14 +8,19 @@ import LoadingSection from '@/components/LoadingSection';
 import Footer from '@/components/Footer';
 import { getVideoSummary, chatWithAI } from '@/services/api';
 
-const Index = () => {
-  const [url, setUrl] = useState<string>('');
-  const [videoData, setVideoData] = useState<{ url: string; title: string; summary: string } | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+interface IndexProps {
+  url: string;
+  setUrl: (url: string) => void;
+  videoData: { url: string; title: string; summary: string } | null;
+  setVideoData: (data: { url: string; title: string; summary: string } | null) => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+}
 
+const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }: IndexProps) => {
   const handleSubmit = async (videoUrl: string) => {
     setIsLoading(true);
-    
+
     try {
       const data = await getVideoSummary(videoUrl);
       setVideoData({
@@ -39,16 +43,18 @@ const Index = () => {
       setIsLoading(false);
     }
   };
-  
-  const handleSendMessage = async (message: string) => {
+
+  // Fonction pour envoyer des messages à l'IA
+  const handleSendMessage = async (message: string, transcript: string) => {
     try {
-      const response = await chatWithAI(message);
-      return response;
+      const response = await chatWithAI(message, transcript);
+      return response;  // Le champ `response` n'existe plus, on retourne directement `data.answer`
     } catch (error) {
       console.error('Error in chat:', error);
       throw error;
     }
   };
+  
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -71,7 +77,11 @@ const Index = () => {
               title={videoData.title} 
               summary={videoData.summary}
             />
-            <ChatSection onSendMessage={handleSendMessage} />
+            <ChatSection 
+              onSendMessage={handleSendMessage} 
+              transcript={videoData.summary}
+            />
+
           </>
         ) : null}
       </main>
@@ -82,3 +92,4 @@ const Index = () => {
 };
 
 export default Index;
+

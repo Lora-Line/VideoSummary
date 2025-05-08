@@ -1,0 +1,10 @@
+# Dépendances
+fastapi
+uvicorn
+openai-whisper
+transformers
+torch
+yt_dlp
+ffmpeg-python
+jinja2
+python-multipart

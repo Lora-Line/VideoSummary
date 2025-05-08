@@ -1,66 +1,54 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Separator } from '@/components/ui/separator';
-import { ArrowUp, Bot, UserRound } from 'lucide-react';
+// This component provides a chat interface for users to interact with the AI.
 
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
+import { useState, useRef, useEffect } from "react";
+import { Bot, UserRound, ArrowUp } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 
-interface ChatSectionProps {
-  onSendMessage: (message: string) => Promise<string>;
-}
-
-const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "Hello! I'm here to discuss this video with you. What would you like to know?"
-    }
-  ]);
-  const [input, setInput] = useState('');
+const ChatSection = ({ onSendMessage, transcript }) => {
+  // State to manage chat messages, user input, and loading state.
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+
+  // Ref to scroll to the bottom of the chat automatically.
+  const messagesEndRef = useRef(null);
+
+  // Function to scroll to the bottom of the chat.
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-  
+
+  // Scroll to the bottom whenever messages change.
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
+  // Function to handle sending a message.
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
-    
-    const userMessage = input.trim();
-    setInput('');
-    
-    // Add user message to chat
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
-    
-    // Set loading state
-    setIsLoading(true);
-    
+    if (!input.trim()) return;  // Prevent sending empty messages.
+
+    // Add the user's message to the chat.
+    const userMessage = { role: "user", content: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");  // Clear the input field.
+    setIsLoading(true);  // Show the loading indicator.
+
     try {
-      // Send message and get response
-      const response = await onSendMessage(userMessage);
-      
-      // Add assistant response to chat
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      // Send the message to the backend and get the AI's response.
+      const response = await onSendMessage(input, transcript);
+      const assistantMessage = {
+        role: "assistant",
+        content: response.answer || response  // Use the AI's answer.
+      };
+      setMessages((prev) => [...prev, assistantMessage]);  // Add the AI's response to the chat.
     } catch (error) {
-      console.error('Error sending message:', error);
-      setMessages(prev => [...prev, { 
-        role: 'assistant', 
-        content: "I'm sorry, I encountered a problem. Could you please rephrase your question?" 
-      }]);
+      console.error("Failed to send message", error);  // Log any errors.
     } finally {
-      setIsLoading(false);
+      setIsLoading(false);  // Hide the loading indicator.
     }
   };
 
@@ -75,11 +63,13 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
         <CardContent className="p-0">
           <div className="h-[450px] overflow-y-auto p-4">
             <div className="space-y-4">
+              {/* Render chat messages */}
               {messages.map((message, i) => (
                 <div 
                   key={i} 
                   className={`flex gap-3 ${message.role === 'assistant' ? '' : 'justify-end'}`}
                 >
+                  {/* Render the assistant's avatar */}
                   {message.role === 'assistant' && (
                     <Avatar className="h-8 w-8 bg-primary/20">
                       <AvatarFallback className="text-primary">
@@ -87,15 +77,17 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
                       </AvatarFallback>
                     </Avatar>
                   )}
+                  {/* Render the message bubble */}
                   <div 
                     className={`rounded-lg px-4 py-2 max-w-[80%] ${
-                      message.role === 'assistant' 
-                        ? 'bg-secondary text-secondary-foreground' 
+                      message.role === 'assistant'
+                        ? 'bg-secondary text-secondary-foreground'
                         : 'bg-primary text-primary-foreground'
                     }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-line">{message.content}</p>
                   </div>
+                  {/* Render the user's avatar */}
                   {message.role === 'user' && (
                     <Avatar className="h-8 w-8 bg-muted">
                       <AvatarFallback>
@@ -105,6 +97,7 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
                   )}
                 </div>
               ))}
+              {/* Show a loading indicator when the AI is processing */}
               {isLoading && (
                 <div className="flex gap-3">
                   <Avatar className="h-8 w-8 bg-primary/20">
@@ -127,6 +120,7 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
         </CardContent>
         <CardFooter className="p-4 border-t">
           <div className="flex w-full items-center gap-2">
+            {/* Input field for the user to type their message */}
             <Textarea 
               placeholder="Ask a question about the video..."
               className="min-h-12 flex-1 resize-none"
@@ -138,13 +132,14 @@ const ChatSection = ({ onSendMessage }: ChatSectionProps) => {
                   handleSend();
                 }
               }}
-              disabled={isLoading}
+              disabled={isLoading}  // Disable input while loading.
             />
+            {/* Send button */}
             <Button 
               size="icon" 
               className="h-12 w-12 rounded-full"
               onClick={handleSend}
-              disabled={!input.trim() || isLoading}
+              disabled={!input.trim() || isLoading}  // Disable button if input is empty or loading.
             >
               <ArrowUp className="h-5 w-5" />
               <span className="sr-only">Send</span>
