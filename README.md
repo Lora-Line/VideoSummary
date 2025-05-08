@@ -12,7 +12,7 @@ A web application that automatically summarizes YouTube videos and lets users in
 
 ## 🖼️ Preview
 
-![screenshot]('public\Capture d'écran 2025-05-07 200714.png') <!-- Replace with a real image if you have one -->
+![screenshot](public\Capture d'écran 2025-05-07 200714.png)
 
 ---
 
@@ -26,8 +26,8 @@ A web application that automatically summarizes YouTube videos and lets users in
 
 ### 1. Clone the repository
 
-git clone https://github.com/your-username/video-summary.git
-cd video-summary
+git clone https://github.com/Lora-Line/VideoSummary.git
+cd VideoSummary
 
 ### 2. Run the backend (FastAPI)
 
