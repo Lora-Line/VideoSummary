@@ -12,7 +12,8 @@ A web application that automatically summarizes YouTube videos and lets users in
 
 ## 🖼️ Preview
 
-![screenshot](public\Capture d'écran 2025-05-07 200714.png)
+![image](https://github.com/user-attachments/assets/ae2cccbe-f7f3-4d78-bbb5-f24e367d6bbc)
+
 
 ---
 
