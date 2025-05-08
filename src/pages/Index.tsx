@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from "@/components/ui/use-toast";
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -9,11 +9,16 @@ import LoadingSection from '@/components/LoadingSection';
 import Footer from '@/components/Footer';
 import { getVideoSummary, chatWithAI } from '@/services/api';
 
-const Index = () => {
-  const [url, setUrl] = useState<string>('');
-  const [videoData, setVideoData] = useState<{ url: string; title: string; summary: string } | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+interface IndexProps {
+  url: string;
+  setUrl: (url: string) => void;
+  videoData: { url: string; title: string; summary: string } | null;
+  setVideoData: (data: { url: string; title: string; summary: string } | null) => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+}
 
+const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }: IndexProps) => {
   const handleSubmit = async (videoUrl: string) => {
     setIsLoading(true);
     
