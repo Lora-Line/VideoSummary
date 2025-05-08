@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Progress } from '@/components/ui/progress';
 
 interface HeroSectionProps {
   onSubmit: (url: string) => void;
@@ -11,6 +11,34 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ onSubmit, url, setUrl, isLoading }: HeroSectionProps) => {
+  const [progress, setProgress] = React.useState(0);
+  
+  React.useEffect(() => {
+    if (isLoading) {
+      // Reset progress when loading starts
+      setProgress(0);
+      
+      // Simulate progress increasing over time
+      const interval = setInterval(() => {
+        setProgress(prev => {
+          // Increase progress by random amount but keep it under 95%
+          // The final 100% will be set when loading completes
+          const newProgress = Math.min(prev + Math.random() * 10, 95);
+          return newProgress;
+        });
+      }, 500);
+
+      return () => {
+        clearInterval(interval);
+        // Set to 100 when loading is complete
+        setProgress(100);
+      };
+    } else {
+      // Reset progress when loading is complete
+      setProgress(0);
+    }
+  }, [isLoading]);
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (url.trim()) {
@@ -41,9 +69,15 @@ const HeroSection = ({ onSubmit, url, setUrl, isLoading }: HeroSectionProps) => 
             disabled={isLoading}
           />
           <Button type="submit" size="lg" disabled={isLoading || !url.trim()}>
-            {isLoading ? 'Loading...' : 'Summarize'}
+            {isLoading ? 'Summarizing...' : 'Summarize'}
           </Button>
         </form>
+        
+        {isLoading && (
+          <div className="w-full max-w-xl mt-2 mb-4">
+            <Progress value={progress} className="h-2" />
+          </div>
+        )}
         
         <p className="text-sm text-muted-foreground">
           Works with any public YouTube video
