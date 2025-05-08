@@ -18,6 +18,16 @@ interface IndexProps {
 }
 
 const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }: IndexProps) => {
+interface IndexProps {
+  url: string;
+  setUrl: (url: string) => void;
+  videoData: { url: string; title: string; summary: string } | null;
+  setVideoData: (data: { url: string; title: string; summary: string } | null) => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+}
+
+const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }: IndexProps) => {
   const handleSubmit = async (videoUrl: string) => {
     setIsLoading(true);
 
