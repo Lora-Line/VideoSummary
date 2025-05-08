@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { toast } from "@/components/ui/use-toast";
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -8,16 +9,6 @@ import LoadingSection from '@/components/LoadingSection';
 import Footer from '@/components/Footer';
 import { getVideoSummary, chatWithAI } from '@/services/api';
 
-interface IndexProps {
-  url: string;
-  setUrl: (url: string) => void;
-  videoData: { url: string; title: string; summary: string } | null;
-  setVideoData: (data: { url: string; title: string; summary: string } | null) => void;
-  isLoading: boolean;
-  setIsLoading: (loading: boolean) => void;
-}
-
-const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }: IndexProps) => {
 interface IndexProps {
   url: string;
   setUrl: (url: string) => void;
@@ -65,7 +56,6 @@ const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }
     }
   };
   
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -91,7 +81,6 @@ const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }
               onSendMessage={handleSendMessage} 
               transcript={videoData.summary}
             />
-
           </>
         ) : null}
       </main>
@@ -102,4 +91,3 @@ const Index = ({ url, setUrl, videoData, setVideoData, isLoading, setIsLoading }
 };
 
 export default Index;
-
