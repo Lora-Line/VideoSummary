@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -17,7 +18,9 @@ const Header = () => {
           <div className="w-full flex-1 md:w-auto md:flex-none">
           </div>
           <nav className="flex items-center gap-2">
-            <Button variant="ghost" className="text-sm">How it works</Button>
+            <Button variant="ghost" className="text-sm" asChild>
+              <Link to="/how-it-works">How it works</Link>
+            </Button>
           </nav>
         </div>
       </div>
