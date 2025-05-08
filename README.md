@@ -27,18 +27,18 @@ A web application that automatically summarizes YouTube videos and lets users in
 
 ### 1. Clone the repository
 
-git clone https://github.com/Lora-Line/VideoSummary.git
-cd VideoSummary
+git clone https://github.com/Lora-Line/VideoSummary.git  
+cd VideoSummary  
 
 ### 2. Run the backend (FastAPI)
 
-cd backend
-python -m venv env
-.venv\Scripts\activate 
-pip install -r requirements.txt
-uvicorn src.backend.main:app --reload
+cd backend  
+python -m venv env  
+.venv\Scripts\activate   
+pip install -r requirements.txt  
+uvicorn src.backend.main:app --reload  
 
 ### 3. Run the frontend (React)
 
-npm install
-npm run dev
+npm install  
+npm run dev  
